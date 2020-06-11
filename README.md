@@ -14,6 +14,16 @@ add and enable config in `sites-available`
 
 ensure apache2 is listening on respective port in `/etc/apache2/ports.conf`
 
+## firewall setup
+
+enable port 8080
+
+ufw:
+
+```
+sudo ufw allow 8080
+```
+
 ## app 
 
 copy files in `/src` to `/var/www/html`
