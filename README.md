@@ -6,6 +6,7 @@ Requires apache2 and php.
 
 ```
 sudo apt install apache2 php
+sudo systemctl restart apache2
 ```
 
 ## apache2 setup
@@ -43,7 +44,15 @@ sudo ufw allow 8080
 
 ## app 
 
+#### method 1
+
 copy files in `/src` to `/var/www/speed`
+
+### method 2
+
+```
+sudo ln -s /opt/wlanpi/wfe_speedtest/src /var/www/speed 
+```
 
 speedtest requires write access. change permissions to `www-data`:
 
