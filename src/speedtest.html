@@ -53,6 +53,7 @@ function format(d){
 }
 
 //UI CODE
+var resized = new Event('resized')
 var uiData=null;
 function startStop(){
     if(s.getState()==3){
@@ -61,6 +62,7 @@ function startStop(){
 		data=null;
 		I("startStopBtn").className="";
 		initUI();
+    dispatchEvent(resized)
 	}else{
 		//test is not running, begin
 		I("startStopBtn").className="running";
@@ -221,12 +223,6 @@ function initUI(){
 <title>WLAN Pi: Speedtest</title>
 </head>
 <body>
-	<h1><a href="" id="home">./home</a> - <a href="/speedgraph.html">./speedgraph</a></h1>
-	<script>
-	var base = 'http://' + window.location.hostname + ':80';
-	var elem = document.getElementById("home");
-	elem.setAttribute('href', base);
-	</script>
 <div id="testWrapper">
 	<div id="startStopBtn" onclick="startStop()"></div>
 	<div id="test">
@@ -261,6 +257,7 @@ function initUI(){
 		</div>
 	</div>
 </div>
-<script type="text/javascript">setTimeout(function(){initUI()},100);</script>
+<script>setTimeout(function(){initUI()},100);</script>
+<script src="subdocument.js"></script>
 </body>
 </html>

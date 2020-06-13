@@ -38,7 +38,9 @@
     </style>
     <script src="Chart.bundle.min.js"></script>
     <script src="speedtest.js"></script>
+    <script src="subdocument.js"></script>
     <script type="text/javascript">
+        var resized = new Event('resized')
         var s = null
         function runTest() {
             var chart1ctx = document.getElementById('chart1Area').getContext('2d')
@@ -220,6 +222,7 @@
                     chart2.update()
                 }
                 ip.textContent = data.clientIp
+                dispatchEvent(resized)
             }
             s.onend=function(aborted){
                 document.getElementById('abortBtn').style.display = 'none'
@@ -228,8 +231,10 @@
                 if (aborted) {
                     document.getElementById('testArea').style.display = 'none'
                 }
+                dispatchEvent(resized)
             }
             s.start();
+             
         }
         function abortTest() {
             if (s) s.abort();
@@ -238,12 +243,6 @@
 </head>
 
 <body>
-        <h1><a href="" id="home">./home</a> - <a href="/speedtest.html">./speedtest</a></h1>
-        <script>
-        var base = 'http://' + window.location.hostname + ':80';
-        var elem = document.getElementById("home");
-        elem.setAttribute('href', base);
-        </script>
     <div id="testArea" style="display:none">
         <p id="ip">Please wait...</p>
 
@@ -256,5 +255,6 @@
         <a href="javascript:abortTest()" id="abortBtn">Abort</a>
     </div>
     <a href="javascript:runTest()" id="startBtn">Run speedtest</a>
+
 </body>
 </html>
