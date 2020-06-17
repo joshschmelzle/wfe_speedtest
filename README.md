@@ -44,11 +44,11 @@ sudo ufw allow 8080
 
 ## app 
 
-#### method 1
+#### production
 
 copy files in `/src` to `/var/www/speed`
 
-### method 2
+### development
 
 ```
 sudo ln -s /opt/wlanpi/wfe_speedtest/src /var/www/speed 
