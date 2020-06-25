@@ -1,15 +1,21 @@
 # wfe_speedtest
 
-## installation
+supporting files for the speedtest server on the WLAN Pi
 
-Requires apache2 and php.
+## nginx installation
+
+in progress...
+
+## apache2 installation
+
+requirements: apache2 and php.
 
 ```
 sudo apt install apache2 php
 sudo systemctl restart apache2
 ```
 
-## apache2 setup
+### apache2 setup
 
 add and enable config in `sites-available`
 
@@ -32,7 +38,7 @@ ensure apache2 is listening on respective port in `/etc/apache2/ports.conf`
 Listen 8080
 ```
 
-## firewall setup
+### firewall setup
 
 enable port 8080
 
@@ -42,11 +48,17 @@ ufw:
 sudo ufw allow 8080
 ```
 
-## app 
+## app installation
 
-#### production
+### production
 
 copy files in `/src` to `/var/www/speed`
+
+```
+mkdir /var/www/speed
+cd <repo>/src
+cp ./src/* /var/www/speed -r
+```
 
 ### development
 
@@ -54,7 +66,11 @@ copy files in `/src` to `/var/www/speed`
 sudo ln -s /opt/wlanpi/wfe_speedtest/src /var/www/speed 
 ```
 
-speedtest requires write access. change permissions to `www-data`:
+## file permissions
+
+speedtest `.php` files require write access!
+
+e.g. change permissions to `www-data`:
 
 ```
 sudo chown -R www-data /var/www/speed/*
