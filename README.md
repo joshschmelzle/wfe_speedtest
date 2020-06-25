@@ -19,6 +19,8 @@ sudo systemctl restart apache2
 
 add and enable config in `sites-available`
 
+`vim /etc/apache2/sites-available/speed.conf`:
+
 ```
 <VirtualHost *:8080>
 	DocumentRoot /var/www/speed
