@@ -19,7 +19,9 @@ sudo systemctl restart apache2
 
 add and enable config in `sites-available`
 
-`vim /etc/apache2/sites-available/speed.conf`:
+```
+sudo vim /etc/apache2/sites-available/speed.conf
+```
 
 ```
 <VirtualHost *:8080>
@@ -29,16 +31,22 @@ add and enable config in `sites-available`
 </VirtualHost>
 ```
 
-```
-sudo a2dissite 000-default.conf
-sudo a2ensite speed.conf
-```
+tell apache2 to listen on respective port identified above in:
 
-ensure apache2 is listening on respective port in `/etc/apache2/ports.conf`
+```
+sudo vim /etc/apache2/ports.conf
+```
 
 ```
 Listen 8080
 ```
+
+```
+sudo a2dissite 000-default.conf
+sudo a2ensite speed.conf
+sudo systemctl reload apache2
+```
+
 
 ### firewall setup
 
@@ -75,5 +83,5 @@ speedtest `.php` files require write access!
 e.g. change permissions to `www-data`:
 
 ```
-sudo chown -R www-data /var/www/speed/*
+sudo chown -R www-data:www-data /var/www/speed/*
 ```
